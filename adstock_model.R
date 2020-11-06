@@ -49,7 +49,8 @@ ui <- fluidPage(
 
 server <- function(input, output, session){
   
-  # Function AdStock
+  # Adstock function 
+  
   ad <- NULL
   adstock <- function(RF){
     # if(!is.numeric(RF)){
@@ -64,15 +65,10 @@ server <- function(input, output, session){
     return(ad)  
   }
   
-  # Model Fit 
+  
+  # Adstock Model Fit 
+  
   plot_adstock <- function() {
-    
-    # data <- read_csv("data.csv")
-    # 
-    # kantar_data <- data %>%
-    #   clean_names() %>%
-    #   mutate_at(3, as.factor)
-    # kantar_data$date <- dmy(kantar_data$date_week)
     
     mod1 <- lm(search_volume ~ media_campaign + adstock(input$RF), data=kantar_data)
     kantar_data$fitted_values <- mod1$fitted.values
@@ -90,12 +86,13 @@ server <- function(input, output, session){
            x="", y = "Search Volume",
            fill="") +
       guides(fill=F)+
-      theme_minimal() }
+      theme_minimal()
+    }
   
   
-  # Model Table ####
+  # Model Table
   
-  model <- function(){
+  model_fit <- function(){
     adstock_1<- adstock(input$RF)
     mod1 <- lm(search_volume ~ media_campaign + adstock_1, data=kantar_data)
     summary(mod1)
@@ -144,7 +141,7 @@ server <- function(input, output, session){
   })
   
   output$model_summary <- renderPrint({
-    model()
+    model_fit()
   })
   
   output$campaign_efficiency<- renderDT({
