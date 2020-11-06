@@ -5,4 +5,4 @@ The *Adstock regression model* proposed here aims to explain how a brand’s adv
 
 A table compairing results in terms of efficiency per campagin is provided as well as the model fit specified by the desired retention factor.  
 
-
+A shiny app with all of the above can be found here: https://rubsan24.shinyapps.io/RecruitmentCandidateExercise_RSR/
